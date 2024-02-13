@@ -28,48 +28,51 @@ enum tripPosition_enum {
 }
 
 enum tripConfirmation_status {
-CONFIRMED
-REJECTED
-PENDING
+  CONFIRMED
+  REJECTED
+  PENDING
 }
 
-
 model User {
-  id             Int    @id @default(autoincrement())
-  firstName      String @map("first_name") 
-  lastName       String @map("last_name")
-  sex            String 
+  id             Int           @id @default(autoincrement())
+  userName       String        @map("user_name")
+  firstName      String        @map("first_name")
+  lastName       String        @map("last_name")
+  password       String
+  sex            String
+  birthday       DateTime      @db.Timestamp(0)
   nationality    String
   occupation     String
-  userType       userType_enum  @map("user_type") @default(TRAVELLER)
-  drivingLicense String @map("driving_license")
-  nationalId     String @map("national_id")
-  profileImage   String @map("profile_image")
-  carModel       String @map("car_model")
-  numSeat         Int @map("num_Seat")
-  trip Trip[]
+  telephone      String
+  userType       userType_enum @default(TRAVELLER) @map("user_type")
+  drivingLicense String        @map("driving_license")
+  nationalId     String        @map("national_id")
+  profileImage   String?        @map("profile_image")
+  carModel       String        @map("car_model")
+  numSeat        Int           @map("num_Seat")
+  trip           Trip[]
   tripMember TripMember[]
 
   @@map("user")
 }
 
 model Trip {
-id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-requestorId Int @map("requestor_id")
-user User @relation(fields:[requestorId],references: [id])
+  requestorId Int  @map("requestor_id")
+  user        User @relation(fields: [requestorId], references: [id])
 
-createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamp(0)
-startLoc String @map("start_loc")
-endLoc String @map("end_loc")
-startDate DateTime @db.Date @map("start_date")
-endDate DateTime @db.Date @map("end_date")
-tripMember Int @map("trip_member")
-tripStatus tripStatus_enum @map("trip_status") @default(INITIATE)
-tripmember TripMember[]
+  createdAt   DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
+  startLoc    String          @map("start_loc")
+  endLoc      String          @map("end_loc")
+  startDate   DateTime        @map("start_date") @db.Date
+  endDate     DateTime        @map("end_date") @db.Date
+  tripMember  Int             @map("trip_member")
+  tripPicture String
+  tripStatus  tripStatus_enum @default(INITIATE) @map("trip_status")
+  tripmember TripMember[]
 
   @@map("trip")
-
 }
 
 model TripMember {
@@ -81,7 +84,6 @@ trip Trip @relation(fields: [tripId],references: [id])
 tripMemberId Int @map("tripmember_id")
 user User @relation(fields: [tripMemberId],references: [id])
 
-tripMemberName String @map("tripmember_name")
 tripPosition tripPosition_enum @map("trip_position")
 createdAt    DateTime        @default(now()) @map("created_at") @db.Timestamp(0)
 tripConfirmation tripConfirmation_status
