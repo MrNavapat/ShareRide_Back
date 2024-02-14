@@ -38,14 +38,43 @@ const registerSchema = Joi.object({
 });
 
 const validateRegister = (req, res, next) => {
-  console.log("Validate ");
   const { value, error } = registerSchema.validate(req.body);
-
   if (error) {
     throw error;
   }
+
   req.body = value;
+  console.log(req.body);
   next();
 };
 
-module.exports = validateRegister;
+
+const loginSchema = Joi.object({
+  
+  userName:Joi.string().required(),
+  password: Joi.string()
+    .pattern(/^[a-zA-Z0-9]/)
+    .required()
+    .messages({
+      "string.empty": "password is required",
+      "string.pattern.base":"password must be characters and contain only alphabet and number",       
+      "any.required": "password is required",
+    }),
+  
+ 
+ 
+});
+
+
+const validateLogin = (req, res, next) => {
+  
+  const { value, error } = loginSchema.validate(req.body);
+  if (error) {
+    throw error;
+  }
+
+  req.body = value; 
+  next();
+};
+
+module.exports= { validateRegister ,validateLogin};
