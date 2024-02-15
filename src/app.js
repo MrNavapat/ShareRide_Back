@@ -10,7 +10,11 @@ app.use(express.json())
 
 
 const AuthRoute = require('../routes/auth-route')
+const TripRoute=require('../routes/trip-route')
+
 app.use('/auth', AuthRoute)
+app.use('/trip', TripRoute);
+
 
 app.use(notfound)
 app.use(error)
