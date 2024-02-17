@@ -8,6 +8,7 @@ const Authenticate = require('../middlewares/authenticate')
 
 
 router.post('/', Authenticate,upload.fields([{name:'tripPicture'}]),tripController.createTrip)
+router.get('/profile', Authenticate,tripController.getTrip)
 
 
 module.exports = router;

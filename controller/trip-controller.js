@@ -4,6 +4,7 @@ const createError = require("../utils/create-error");
 const cloudinaryService = require('../services/cloudinary-service')
 const tripService=require('../services/trip-service')
 
+
 exports.createTrip = catchError(async (req, res, next) => { 
 
     if(!req.files){createError('no Trip picture is included')}
@@ -24,8 +25,16 @@ exports.createTrip = catchError(async (req, res, next) => {
     await tripService.createTrip(req.body)
        
 
-
-
 res.status(200).json({message:"upload done"})
+    
+})
+
+
+exports.getTrip = catchError(async (req, res, next) => { 
+
+console.log(req.user)
+const tripResult =await tripService.getTrip(req.user.id)
+res.status(200).json({ tripResult });
+
     
 })
