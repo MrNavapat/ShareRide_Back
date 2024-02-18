@@ -47,3 +47,8 @@ exports.login = catchError(async (req, res, next) => {
     createError("no such username", 403);
   }
 });
+
+
+exports.getMe = (req, res, next) => {
+  res.status(200).json({ user: req.user });
+};

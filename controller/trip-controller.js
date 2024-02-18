@@ -22,19 +22,30 @@ exports.createTrip = catchError(async (req, res, next) => {
     req.body.tripPicture = data.tripPicture
     
     console.log(req.body)
-    await tripService.createTrip(req.body)
-       
+    const createTripResult=await tripService.createTrip(req.body)
+await tripService.createTripMember({tripId:createTripResult.id,tripMemberId:req.body.requestorId,tripPosition:"TRIPLEADER",tripConfirmation:"CONFIRMED",tripReview:0 })
 
 res.status(200).json({message:"upload done"})
     
 })
 
 
-exports.getTrip = catchError(async (req, res, next) => { 
+exports.getTripById = catchError(async (req, res, next) => { 
 
 console.log(req.user)
-const tripResult =await tripService.getTrip(req.user.id)
-res.status(200).json({ tripResult });
+    const confirmTripResult = await tripService.getConfirmTripbyId(req.user.id)
+    const pendingTripResult = await tripService.getPendingTripbyId(req.user.id)
+res.status(200).json({confirmTripResult  ,pendingTripResult});
 
     
 })
+
+
+exports.getTripByGuest = catchError(async (req, res, next) => { 
+
+    console.log(req.user)
+    const tripResult =await tripService.getTripbyGuest()
+    res.status(200).json({ tripResult });
+    
+        
+    })
