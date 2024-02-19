@@ -35,7 +35,8 @@ exports.getTripById = catchError(async (req, res, next) => {
 console.log(req.user)
     const confirmTripResult = await tripService.getConfirmTripbyId(req.user.id)
     const pendingTripResult = await tripService.getPendingTripbyId(req.user.id)
-res.status(200).json({confirmTripResult  ,pendingTripResult});
+    const upComingTripResult=await tripService.getUpcomingTripbyId(req.user.id)
+res.status(200).json({confirmTripResult  ,pendingTripResult,upComingTripResult});
 
     
 })

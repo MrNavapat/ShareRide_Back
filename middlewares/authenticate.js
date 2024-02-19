@@ -5,7 +5,7 @@ const userService=require('../services/user-service')
 
 const Authenticate = catchError(async (req, res, next) => {
     const authorization = req.headers.authorization
-    console.log(req.headers.authorization)
+    console.log("req body is here !!!!!!!!!!!!")
     console.log(req.body)
 
 
