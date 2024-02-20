@@ -10,6 +10,18 @@ res.status(200).json({message:"join trip done"})
     
 })
 
+exports.quitTripMember=catchError(async(req,res,next)=>{
+    console.log("**************QuitTripMember***************")
+    console.log(req.params.tripId)
+
+    await tripMemberService.quitTripMember( +req.params.tripId,req.user.id )
+
+    res.status(200).json({message:"delete trip done"})
+    
+})
+
+
+
 
 
 

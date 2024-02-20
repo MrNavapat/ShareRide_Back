@@ -7,6 +7,7 @@ const Authenticate = require('../middlewares/authenticate')
 
 
 router.post('/', Authenticate,tripMemberController.createTripMember)
+router.delete('/:tripId',Authenticate,tripMemberController.quitTripMember);
 
 
 module.exports = router;
