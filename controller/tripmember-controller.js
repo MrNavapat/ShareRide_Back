@@ -20,6 +20,14 @@ exports.quitTripMember=catchError(async(req,res,next)=>{
     
 })
 
+exports.getTripMemberbyTripId = catchError(async (req, res, next) => {
+    console.log("**************get TripMember by TripId***************")
+    console.log(req.params.tripId)
+    const TripMemberResultbyTripId =await tripMemberService.getTripMemberbyTripId( +req.params.tripId)
+    res.status(200).json({TripMemberResultbyTripId});
+
+
+})
 
 
 

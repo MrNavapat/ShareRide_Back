@@ -10,5 +10,13 @@ exports.quitTripMember = (tripId, tripMemberId ) => prisma.tripMember.deleteMany
         tripMemberId: tripMemberId
     }
 })
-    
 
+
+exports.getTripMemberbyTripId = (tripId) => prisma.tripMember.findMany({
+    where: {
+        tripId: tripId,
+    },
+    include: {
+        user:true
+    }
+})

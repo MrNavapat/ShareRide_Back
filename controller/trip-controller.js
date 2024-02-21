@@ -40,7 +40,6 @@ console.log(req.user)
     
 res.status(200).json({confirmTripResult  ,pendingTripResult,upComingTripResult,manageTripResult});
 
-    // res.status(200).json({manageTripResult});
 
 })
 
@@ -52,4 +51,17 @@ exports.getTripByGuest = catchError(async (req, res, next) => {
     res.status(200).json({ tripResult });
     
         
+})
+    
+
+
+exports.getTripByTripId = catchError(async (req, res, next) => { 
+
+
+    console.log("**************get TripInfo by tripID***************")
+    console.log(req.params.tripId)
+    const TripResultbyTripId = await tripService.getTripbyTripId(+req.params.tripId)       
+    res.status(200).json({TripResultbyTripId});
+    
+    
     })

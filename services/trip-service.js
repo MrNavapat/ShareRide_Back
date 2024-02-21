@@ -59,3 +59,7 @@ exports.getManageTripbyId = (userId) => prisma.trip.findMany({where: {tripStatus
 
 exports.getTripbyGuest = () =>prisma.trip.findMany({ where:{ tripStatus: "INITIATE" } } );
   
+
+
+exports.getTripbyTripId = (tripId) =>prisma.trip.findUnique({ where:{ id: tripId } } );
+
