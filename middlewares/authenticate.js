@@ -14,6 +14,9 @@ const Authenticate = catchError(async (req, res, next) => {
 
     const token = authorization.split(' ')[1]
     const decodedPayload = jwtService.verify(token)
+    console.log('**********within Authenticate *********')
+    console.log(token)
+    console.log(decodedPayload)
     const authUser = await userService.findUserbyId(decodedPayload.Id)
     delete authUser.password
     req.user = authUser

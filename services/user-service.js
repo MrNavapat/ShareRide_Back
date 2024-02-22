@@ -11,7 +11,7 @@ exports.findUserName = userName =>
 exports.createUser = data => prisma.user.create({ data })
 
 exports.findUserbyId = id => {
-    console.log("find user by ID ,Prisma")
+    console.log("find user by id ,Prisma")
     console.log("id is ",id)
 
     return prisma.user.findUnique({ where: { id } })
