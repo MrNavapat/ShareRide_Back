@@ -64,4 +64,15 @@ exports.getTripByTripId = catchError(async (req, res, next) => {
     res.status(200).json({TripResultbyTripId});
     
     
-    })
+})
+    
+
+
+exports.UpdateTripInfoByTripId = catchError(async (req, res, next) => {
+    console.log("**************UpdateTripInfo by trip Id***************")
+    console.log(req.params.tripIdX)
+    const UpdateTripInfoResult=await tripService.UpdateTripInfoByTripId(+req.params.tripIdX,req.body)
+    res.status(200).json({UpdateTripInfoResult});
+
+
+})

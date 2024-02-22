@@ -30,6 +30,14 @@ exports.getTripMemberbyTripId = catchError(async (req, res, next) => {
 })
 
 
+exports.updateTripMemberbyTripIdandMemberId = catchError(async (req, res, next) => {
+    console.log("**************Update TripMember by TripId***************")
+    console.log(req.params.tripId)
+    const UpdateTripMemberResultbyTripIdandMemberId =await tripMemberService.updateTripMemberbyTripIdandMemberId( +req.params.tripId,+req.params.tripMemberId,req.body)
+    res.status(200).json({UpdateTripMemberResultbyTripIdandMemberId});
+
+})
+
 
 
 

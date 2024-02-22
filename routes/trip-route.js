@@ -11,5 +11,6 @@ router.post('/', Authenticate,upload.fields([{name:'tripPicture'}]),tripControll
 router.get('/profile', Authenticate, tripController.getTripById)
 router.get('/all',tripController.getTripByGuest)
 router.get('/:tripId', Authenticate, tripController.getTripByTripId)
+router.patch('/:tripIdX',Authenticate,tripController.UpdateTripInfoByTripId)
 
 module.exports = router;

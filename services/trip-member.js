@@ -20,3 +20,12 @@ exports.getTripMemberbyTripId = (tripId) => prisma.tripMember.findMany({
         user:true
     }
 })
+
+
+exports.updateTripMemberbyTripIdandMemberId = (tripId, tripMemberId,data) => prisma.tripMember.updateMany({
+    where: {
+        tripId: tripId,
+        tripMemberId:tripMemberId
+    },
+    data: data
+})

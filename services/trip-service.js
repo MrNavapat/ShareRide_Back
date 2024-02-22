@@ -63,3 +63,7 @@ exports.getTripbyGuest = () =>prisma.trip.findMany({ where:{ tripStatus: "INITIA
 
 exports.getTripbyTripId = (tripId) =>prisma.trip.findUnique({ where:{ id: tripId } } );
 
+
+exports.UpdateTripInfoByTripId = (tripId, data) => prisma.trip.update({
+    where: { id: tripId }, data: data
+})
