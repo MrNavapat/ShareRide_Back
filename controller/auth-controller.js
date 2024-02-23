@@ -15,7 +15,7 @@ exports.register = catchError(async (req, res, next) => {
     req.body.password = await bcrypt.hash(req.body.password, 12);
     const newUser = await userService.createUser(req.body);
 
-    const payload = { id: newUser.id };
+    const payload = { Id: newUser.id };
     const accessToken = jwt.sign(payload, SECRET_KEY, {
       expiresIn: EXPIRE_IN,
     });
