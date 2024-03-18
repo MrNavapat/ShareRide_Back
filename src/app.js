@@ -3,15 +3,16 @@ const express = require('express')
 const cors = require('cors')
 const error = require('../middlewares/error')
 const notfound = require('../middlewares/not-found')
+const AuthRoute = require('../routes/auth-route')
+const TripRoute = require('../routes/trip-route')
+const TripMemberRoute=require('../routes/trip-member')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
 
 
-const AuthRoute = require('../routes/auth-route')
-const TripRoute = require('../routes/trip-route')
-const TripMemberRoute=require('../routes/trip-member')
+
 
 app.use('/auth', AuthRoute)
 app.use('/trip', TripRoute);

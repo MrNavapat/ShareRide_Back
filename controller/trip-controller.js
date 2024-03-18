@@ -23,7 +23,7 @@ exports.createTrip = catchError(async (req, res, next) => {
     
     console.log(req.body)
     const createTripResult=await tripService.createTrip(req.body)
-await tripService.createTripMember({tripId:createTripResult.id,tripMemberId:req.body.requestorId,tripPosition:"TRIPLEADER",tripConfirmation:"CONFIRMED",tripReview:0 })
+    await tripService.createTripMember({tripId:createTripResult.id,tripMemberId:req.body.requestorId,tripPosition:"TRIPLEADER",tripConfirmation:"CONFIRMED",tripReview:0 })
 
 res.status(200).json({message:"upload done"})
     
